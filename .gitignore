@@ -42,7 +42,9 @@ lerna-debug.log*
 .env.production.local
 .env.local
 .env.authz-service
+.env.authz-service.example
 .env.invoice-service
+.env.invoice-service.example
 
 # temp directory
 .temp
