@@ -3,17 +3,16 @@ import {
   EvaluateDecisionRequestDto,
   EvaluateDecisionResponseDto,
 } from '@app/common';
+import { DecisionEvaluationService } from '../evaluation/decision-evaluation.service';
 
 @Controller('/v1/decisions')
 export class DecisionsController {
-  @Post('evaluate')
-  evaluate(
+  constructor(private readonly evaluation: DecisionEvaluationService) {}
+
+  @Post('/evaluate')
+  async evaluate(
     @Body() body: EvaluateDecisionRequestDto,
-  ): EvaluateDecisionResponseDto {
-    return {
-      decision: 'DENY',
-      reasons: ['Not implemented yet'],
-      matchedPolicies: [],
-    };
+  ): Promise<EvaluateDecisionResponseDto> {
+    return this.evaluation.evaluate(body);
   }
 }
